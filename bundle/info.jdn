@@ -1,0 +1,26 @@
+{:name "pcgrand"
+ :url "https://github.com/sogaiu/pcgrand"
+ :repo "git+https://github.com/sogaiu/pcgrand"
+
+ :vendored
+ [{:name "niche"
+   :url "https://github.com/sogaiu/niche"
+   :tag "3f744cfb02b472971f82e78f16a027908a4bd717"
+   :paths [["niche.janet" "bin/"]]}
+  {:name "pcg-c"
+   :url "https://github.com/imneme/pcg-c"
+   :tag "83252d9c23df9c82ecb42210afed61a7b42402d7"
+   # use :prefix and :paths to make jeep work with non-bundles
+   :prefix "pcg-c"
+   :paths [["LICENSE-APACHE.txt" "LICENSE-APACHE.txt"]
+           ["LICENSE-MIT.txt" "LICENSE-MIT.txt"]
+           ["include/pcg_variants.h" "include/pcg_variants.h"]
+           ["src/pcg-advance-32.c" "src/pcg-advance-32.c"]]}]
+
+ :natives
+ [{:name "pcgrand"
+   :files ["pcg-c/src/pcg-advance-32.c"
+           "pcg_random.c"]
+   :cflags ["-Ipcg-c/include"
+            "-std=c99" "-Wall" "-Wextra"]}]}
+
